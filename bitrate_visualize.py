@@ -19,6 +19,14 @@ def readLine(line):
     res = int(timeStamp)
     return res
 
+def getX(line):
+    i=0
+    x=""
+    while (line[i]!=" "):
+        x+=line[i]
+        i=i+1
+    return int(x)
+    
 def writeCSV(toWrite, fileName):
     with open(fileName,"a") as writeFile:
         write = csv.writer(writeFile)
@@ -30,7 +38,7 @@ def writeRes(toWrite,fileName):
         writeFile.write('\n')
     
 
-file = open("WIN_20190224_10_03_59_Pro.mp4.txt","r")
+file = open("WIN_20190305_09_05_46_Pro.mp4.txt","r")
 line=file.readline()
 
 fig, axs = plt.subplots()
@@ -41,10 +49,12 @@ numFrame=1
 previous = 0
 toPlot=[]
 while line!='':
-    now = readLine(line)
+    #now = readLine(line)
+    now = getX(line)
     line=file.readline()
     counter=counter+1
-    if (now>previous+29000):
+    #if (now>previous+29000):
+    if (now<previous):
         #axs.scatter(numFrame,counter,s=10)
         toPlot.append(counter)
         counter=0
